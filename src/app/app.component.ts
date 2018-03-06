@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
+import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from './store';
 import { INCREMENT } from './actions';
 
@@ -10,14 +10,11 @@ import { INCREMENT } from './actions';
 })
 export class AppComponent {
 
-  counter: number = 0;
+  // @select() counter; // direct 
+  // @select('counter') count; // another name 
+  @select((s: IAppState) => s.counter) count;// map function and we can use it in coplex states
 
   constructor(private ngRedux: NgRedux<IAppState>) {
-    this.ngRedux.subscribe(() => {
-      // console.log(this.ngRedux.getState());
-      var state = this.ngRedux.getState();
-      this.counter = state.counter;
-    });
   }
 
   increment() {

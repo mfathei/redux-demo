@@ -1,7 +1,7 @@
 import { INCREMENT } from './actions';
 
 export interface IAppState {
-    counter: number
+    counter: number;
 }
 
 export const INITIAL_STATE: IAppState = {
